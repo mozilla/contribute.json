@@ -8,7 +8,7 @@ This is currently a proposal and is not yet stable. Suggestions and pull-request
 This is the current draft. I'm presenting the schema as an example instance using `mozilla/bedrock`
 as the subject. Previous discussion can be found in the comments of [the original gist](https://gist.github.com/pmclanahan/a162224376ca110b4a40).
 
-```json
+```javascript
 {
     // required
     "name": "Bedrock",
