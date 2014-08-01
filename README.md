@@ -28,7 +28,7 @@ as the subject. Previous discussion can be found in the comments of [the origina
         "mailing-list": "https://www.mozilla.org/about/forums/#dev-mozilla-org",
         "irc": "irc://irc.mozilla.org/#www"
     },
-    
+
     // optional
     "bugs": {
         "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
@@ -50,3 +50,13 @@ as the subject. Previous discussion can be found in the comments of [the origina
     ]
 }
 ```
+
+Validation
+----------
+
+We're currently using the [JSON Schema](http://json-schema.org/)
+standard and we publish our our schema at
+[schema.json](https://github.com/mozilla/contribute.json/blob/master/schema.json).
+
+You can, for example, use the [json-schema-validator](https://json-schema-validator.herokuapp.com/)
+to validate your own `contribute.json` against this schema.
