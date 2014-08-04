@@ -1,0 +1,27 @@
+{% raw %}
+<div id="validation">
+  <p ng-if="!finished">Loading loading loading...</p>
+  <div ng-if="finished">
+    <h4>URL: <a href="{{ url }}"><code>{{ url }}</code></a></h4>
+    <div ng-if="!schema_error">
+      <h2 ng-show="error" class="result-bad">
+        RESULT: BAD
+      <br>
+      <code>{{ error }}</code></h2>
+
+      <h2 ng-show="!error" class="result-good">RESULT: OK</h2>
+
+      <h4>Response</h4>
+<pre>{{ response }}</pre>
+      <h4><a href="{{ schema_url }}">Schema</a></h4>
+<pre>{{ schema }}</pre>
+    </div>
+
+
+    <div ng-if="schema_error">
+      <p>Failed to load the schema. My bad.</p>
+    </div>
+  </div>
+
+</div>
+{% endraw %}

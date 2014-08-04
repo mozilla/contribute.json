@@ -1,0 +1,17 @@
+name: contribute
+url:
+    - contribute.paas.allizom.org
+framework:
+    type: python
+    runtime: python27
+mem: 128M
+instances: 1
+requirements:
+    pypm:
+        - python-memcached
+        - requests
+        - jsonschema
+services:
+    ${name}-memcache: memcached
+processes:
+    web: ./__main__.py

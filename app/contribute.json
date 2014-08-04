@@ -1,0 +1,12 @@
+{
+    "name": "contribute.json",
+    "description": "Site for validating and explaining /contribute.json",
+    "repository": {
+        "url": "https://github.com/mozilla/contribute.json",
+        "license": "MPL2"
+    },
+    "keywords": [
+        "standards",
+        "getinvolved"
+    ]
+}

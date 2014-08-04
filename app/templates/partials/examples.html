@@ -1,0 +1,9 @@
+{% raw %}
+<p ng-show="loading">Loading loading loading...</p>
+<table class="table">
+  <tr ng-repeat="url in urls">
+    <td><a href="{{ urlToLink(url) }}">{{ url }}</a></td>
+  </tr>
+</table>
+<p ng-if="!loading && !urls.length">No previous examples available at the moment.</p>
+{% endraw %}
