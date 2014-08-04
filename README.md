@@ -14,13 +14,15 @@ as the subject. Previous discussion can be found in the comments of [the origina
     "name": "Bedrock",
     "description": "The app powering (most of) www.mozilla.org.",
     "repository": {
-        "type": "git",
         "url": "https://github.com/mozilla/bedrock",
         "license": "MPL2",
         // optional
+        "type": "git",
         "tests": "https://ci.mozilla.org/job/bedrock/",
         "clone": "https://github.com/mozilla/bedrock.git"
     },
+    
+    // optional
     "participate": {
         "home": "https://wiki.mozilla.org/Mozilla.org",
         "docs": "http://bedrock.readthedocs.org/",
@@ -28,8 +30,6 @@ as the subject. Previous discussion can be found in the comments of [the origina
         "mailing-list": "https://www.mozilla.org/about/forums/#dev-mozilla-org",
         "irc": "irc://irc.mozilla.org/#www"
     },
-
-    // optional
     "bugs": {
         "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
         "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock",
