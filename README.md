@@ -28,7 +28,13 @@ as the subject. Previous discussion can be found in the comments of [the origina
         "docs": "http://bedrock.readthedocs.org/",
         // optional
         "mailing-list": "https://www.mozilla.org/about/forums/#dev-mozilla-org",
-        "irc": "irc://irc.mozilla.org/#www"
+        "irc": "irc://irc.mozilla.org/#www",
+        "irc-contacts": [
+            "pmac",
+            "jgmize",
+            "malexis",
+            "cmore"
+        ]
     },
     "bugs": {
         "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
