@@ -51,6 +51,22 @@ as the subject. Previous discussion can be found in the comments of [the origina
 }
 ```
 
+Required Fields
+---------------
+
+The bare minimum needed for a valid `contribute.json` file.
+
+```json
+{
+    "name": "contribute.json",
+    "description": "A JSON schema for open-source project contribution data.",
+    "repository": {
+        "url": "https://github.com/mozilla/contribute.json",
+        "license": "Apache2"
+    }
+}
+```
+
 Validation
 ----------
 
