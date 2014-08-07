@@ -52,16 +52,34 @@
 
             <ng-view></ng-view>
 
+            <script type="text/ng-template" id="validation.html">
+            {% include "partials/validation.html" %}
+            </script>
+
+            <script type="text/ng-template" id="what-is-this.html">
+            {% include "partials/what-is-this.html" %}
+            </script>
+
+            <script type="text/ng-template" id="examples.html">
+            {% include "partials/examples.html" %}
+            </script>
+
+            <script type="text/ng-template" id="validator.html">
+            {% include "partials/validator.html" %}
+            </script>
+
           </div>
 
           <div class="mastfoot">
             <div class="inner">
               <p>
+                <a href="/what-is-this?">What is this?</a>
+                &bull;
                 <a href="/examples">Examples and resent submissions</a>
                 &bull;
-                <a href="https://github.com/mozilla/contribute.json">Read More</a>
-                &bull;
                 <a href="/https%253A%252F%252Fraw.githubusercontent.com%252Fmozilla%252Fcontribute.json%252Fflask-app%252Fapp%252Fcontribute.json">This site's /contribute.json</a>
+                &bull;
+                <a href="https://github.com/mozilla/contribute.json">On GitHub</a>
 
               </p>
             </div>
