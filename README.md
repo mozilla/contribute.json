@@ -21,7 +21,7 @@ as the subject. Previous discussion can be found in the comments of [the origina
         "tests": "https://ci.mozilla.org/job/bedrock/",
         "clone": "https://github.com/mozilla/bedrock.git"
     },
-    
+
     // optional
     "participate": {
         "home": "https://wiki.mozilla.org/Mozilla.org",
@@ -60,3 +60,23 @@ standard and we publish our our schema at
 
 You can, for example, use the [json-schema-validator](https://json-schema-validator.herokuapp.com/)
 to validate your own `contribute.json` against this schema.
+
+
+Flask app
+---------
+
+There's a server-side app that is currently available on
+http://contribute.paas.allizom.org
+
+To run the app, go into the
+[./app/ directory](https://github.com/mozilla/contribute.json/tree/master/app)
+and to run it you simply run:
+
+```
+DEBUG=true python .
+```
+
+Then visit `http://localhost:5000` and you can use the site.
+The site uses Flask (see [requirements.txt](https://github.com/mozilla/contribute.json/blob/master/app/requirements.txt))
+for the things you need to install. Most of the functionality is done as an
+[AngularJS](https://angularjs.org/) app.
