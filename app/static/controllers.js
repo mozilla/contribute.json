@@ -1,6 +1,10 @@
 var app = angular.module('contribute.controllers', [])
 
-.controller('FormController', [
+.controller('WhatIsThisController', ['$scope', function($scope) {
+
+}])
+
+.controller('ValidatorController', [
     '$scope', '$location',
     function($scope, $location) {
 
