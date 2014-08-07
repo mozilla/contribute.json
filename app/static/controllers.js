@@ -72,6 +72,8 @@ var app = angular.module('contribute.controllers', [])
                 $scope.schema_error = response.schema_error;
             } else if (response.validation_error) {
                 $scope.error = response.validation_error;
+            } else if (response.request_error) {
+                $scope.request_error = response.request_error;
             }
             $scope.finished = true;
         })

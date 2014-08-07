@@ -64,8 +64,11 @@ class ValidationView(MethodView):
     def get(self):
         url = request.args['url']
 
-        response = requests.get(url)
-        content = response.json()
+        try:
+            response = requests.get(url)
+            content = response.json()
+        except (ValueError, requests.exceptions.RequestException) as exp:
+            return jsonify({'request_error': str(exp)})
 
         schema_content = cache_get('schema')
         schema_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
@@ -87,14 +90,6 @@ class ValidationView(MethodView):
             )
             context['errors'] = None
         except jsonschema.ValidationError as error:
-            #print "ERROR"
-            #print error
-
-            #print repr(error)
-            #print type(error)
-            #print repr(error.message)
-            #print repr(error.context)
-            #print repr(error.cause)
             context['validation_error'] = error.message
         except jsonschema.SchemaError as error:
             context['schema_error'] = error.message
