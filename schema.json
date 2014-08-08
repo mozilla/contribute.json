@@ -29,6 +29,12 @@
                 },
                 "irc": {
                     "type": "string"
+                },
+                "irc-contacts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "required": [
