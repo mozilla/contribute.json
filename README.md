@@ -76,22 +76,26 @@ http://contribute.paas.allizom.org
 
 ## Running the Flask app locally
 
-``` bash
-git clone git@github.com:mozilla/contribute.json.git && cd contribute.json
+```bash
+# clone from the main repo
+git clone git@github.com:mozilla/contribute.json.git
 
-// using virtualenv wrapper, create a new virtual environment for the project.
-mkvirtualenv contribute
+# go into the directory
+cd contribute.json
 
-// change directory into the flash app directory
+# using virtualenv wrapper, create a new virtual environment for the project.
+mkvirtualenv contribute.json
+
+# change directory into the flash app directory
 cd app
 
-// intall the requirements
+# intall the requirements
 pip install -r requirements.txt
 
-// Run the app with
+# Run the app with
 DEBUG=true python .
 
-Open up localhost:5000/
+open localhost:5000/
 ```
 
 NB! Most of the functionality is built as an [AngularJS](https://angularjs.org/) app.
