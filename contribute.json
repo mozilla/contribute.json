@@ -1,0 +1,19 @@
+{
+    "name": "contribute.json",
+    "description": "A JSON schema for open-source project contribution data.",
+    "repository": {
+        "url": "https://github.com/mozilla/contribute.json",
+        "license": "Apache License, Version 2.0"
+    },
+    "bugs": {
+        "report": "https://github.com/mozilla/contribute.json/issues"
+    }
+    "urls": {
+        "stage": "http://contribute.paas.allizom.org/"
+    }
+    "keywords": [
+        "json",
+        "javascript",
+        "python"
+    ]
+}
