@@ -76,6 +76,7 @@ http://contribute.paas.allizom.org
 
 ## Running the Flask app locally
 
+``` html
 git clone git@github.com:yourusername/contribute.json.git && cd contribute.json
 
 // using virtualenv wrapper, create a new virtual environment for the project.
@@ -91,5 +92,6 @@ pip install -r requirements.txt
 DEBUG=true python .
 
 Open up localhost:5000/
+```
 
 NB! Most of the functionality is built as an [AngularJS](https://angularjs.org/) app.
