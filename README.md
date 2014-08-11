@@ -78,7 +78,7 @@ http://contribute.paas.allizom.org
 
 ```bash
 # clone from the main repo
-git clone git@github.com:mozilla/contribute.json.git
+git clone https://github.com/mozilla/contribute.json.git
 
 # go into the directory
 cd contribute.json
