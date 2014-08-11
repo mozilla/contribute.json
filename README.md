@@ -61,7 +61,7 @@ Validation
 ----------
 
 We're currently using the [JSON Schema](http://json-schema.org/)
-standard and we publish our our schema at
+standard and we publish our schema at
 [schema.json](https://github.com/mozilla/contribute.json/blob/master/schema.json).
 
 You can, for example, use the [json-schema-validator](https://json-schema-validator.herokuapp.com/)
