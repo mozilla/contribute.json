@@ -74,15 +74,24 @@ Flask app
 There's a server-side app that is currently available on
 http://contribute.paas.allizom.org
 
-To run the app, go into the
-[./app/ directory](https://github.com/mozilla/contribute.json/tree/master/app)
-and to run it you simply run:
+## Running the Flask app locally
 
-```
+``` html
+git clone git@github.com:yourusername/contribute.json.git && cd contribute.json
+
+// using virtualenv wrapper, create a new virtual environment for the project.
+mkvirtualenv contribute
+
+// change directory into the flash app directory
+cd app
+
+// intall the requirements
+pip install -r requirements.txt
+
+// Run the app with
 DEBUG=true python .
+
+Open up localhost:5000/
 ```
 
-Then visit `http://localhost:5000` and you can use the site.
-The site uses Flask (see [requirements.txt](https://github.com/mozilla/contribute.json/blob/master/app/requirements.txt))
-for the things you need to install. Most of the functionality is done as an
-[AngularJS](https://angularjs.org/) app.
+NB! Most of the functionality is built as an [AngularJS](https://angularjs.org/) app.
