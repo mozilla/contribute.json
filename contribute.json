@@ -9,7 +9,7 @@
         "report": "https://github.com/mozilla/contribute.json/issues"
     }
     "urls": {
-        "stage": "http://contribute.paas.allizom.org/"
+        "prod": "http://contribute.paas.allizom.org/"
     }
     "keywords": [
         "json",
