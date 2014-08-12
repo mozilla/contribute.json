@@ -86,7 +86,7 @@ cd contribute.json
 # using virtualenv wrapper, create a new virtual environment for the project.
 mkvirtualenv contribute.json
 
-# change directory into the flash app directory
+# change directory into the flask app directory
 cd app
 
 # intall the requirements
