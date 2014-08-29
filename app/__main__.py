@@ -13,6 +13,8 @@ MEMCACHE_URL = os.environ.get('MEMCACHE_URL', '127.0.0.1:11211').split(',')
 DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
 APP_LOCATION = 'client'
 
+SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
+
 # app = Flask(__name__, static_folder=os.path.join(APP_LOCATION, 'static'))
 app = Flask(__name__)
 cache = MemcachedCache(MEMCACHE_URL)
@@ -61,28 +63,37 @@ def catch_all(path):
 
 class ValidationView(MethodView):
 
-    def get(self):
-        url = request.args['url']
-
-        try:
-            response = requests.get(url)
-            content = response.json()
-        except (ValueError, requests.exceptions.RequestException) as exp:
-            return jsonify({'request_error': str(exp)})
+    def post(self):
+        if 'url' in request.args:
+            url = request.args['url']
+            try:
+                response = requests.get(url)
+                content = response.json()
+            except (ValueError, requests.exceptions.RequestException) as exp:
+                return jsonify({'request_error': str(exp)})
+        elif request.data:
+            try:
+                content = json.loads(request.data)
+            except ValueError as exp:
+                return jsonify({
+                    'request_error': str(exp),
+                })
+            url = None
 
         schema_content = cache_get('schema')
-        schema_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
         if schema_content is None:
-            schema = requests.get(schema_url)
+            schema = requests.get(SCHEMA_URL)
             schema_content = schema.json()
             cache_set('schema', schema_content, 60 * 60)
 
         context = {
-            'url': url,
             'schema': schema_content,
-            'schema_url': schema_url,
+            'schema_url': SCHEMA_URL,
             'response': content,
         }
+        if url:
+            context['url'] = url
+
         try:
             jsonschema.validate(
                 content,
@@ -101,6 +112,7 @@ class ValidationView(MethodView):
         cache_set('urls_submitted', previous_urls, 60 * 60 * 24 * 10)
 
         return jsonify(context)
+
 
 app.add_url_rule('/validate', view_func=ValidationView.as_view('validate'))
 

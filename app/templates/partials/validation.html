@@ -2,7 +2,7 @@
 <div id="validation">
   <p ng-if="!finished">Loading loading loading...</p>
   <div ng-if="finished">
-    <h4>URL: <a href="{{ url }}"><code>{{ url }}</code></a></h4>
+    <h4 ng-if="url">URL: <a href="{{ url }}"><code>{{ url }}</code></a></h4>
     <div ng-if="!(schema_error || request_error)">
       <h2 ng-show="error" class="result-bad">
         RESULT: BAD
@@ -11,7 +11,8 @@
 
       <h2 ng-show="!error" class="result-good">RESULT: OK</h2>
 
-      <h4>Response</h4>
+      <h4 ng-if="url">Response</h4>
+      <h4 ng-if="!url">Content</h4>
 <pre>{{ response }}</pre>
       <h4><a href="{{ schema_url }}">Schema</a></h4>
 <pre>{{ schema }}</pre>
@@ -22,8 +23,10 @@
     </div>
 
     <div ng-if="request_error">
-      <p>Failed to load the URL.</p>
+      <p ng-if="url">Failed to load the URL.</p>
+      <p ng-if="!url">Failed to load the JSON data.</p>
       <p><code>{{ request_error }}</code></p>
+
     </div>
 
   </div>

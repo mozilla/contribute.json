@@ -30,6 +30,10 @@ angular.module('contribute', [
         templateUrl: 'what-is-this.html',
         controller: 'WhatIsThisController'
     })
+    .when('/result', {
+        templateUrl: 'validation.html',
+        controller: 'ValidationController'
+    })
     .when('/:wildcard', {
         templateUrl: 'validation.html',
         controller: 'ValidationController'
