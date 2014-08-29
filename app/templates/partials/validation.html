@@ -23,8 +23,10 @@
     </div>
 
     <div ng-if="request_error">
-      <p>Failed to load the URL.</p>
+      <p ng-if="url">Failed to load the URL.</p>
+      <p ng-if="!url">Failed to load the JSON data.</p>
       <p><code>{{ request_error }}</code></p>
+
     </div>
 
   </div>

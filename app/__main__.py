@@ -75,7 +75,9 @@ class ValidationView(MethodView):
             try:
                 content = json.loads(request.data)
             except ValueError as exp:
-                return jsonify({'request_error': str(exp)})
+                return jsonify({
+                    'request_error': str(exp),
+                })
             url = None
 
         schema_content = cache_get('schema')
