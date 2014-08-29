@@ -1,24 +1,69 @@
 var app = angular.module('contribute.controllers', [])
 
+.factory('resultHolder', function() {
+    var service = {};
+    var _result;
+    service.store = function(result) {
+        _result = result;
+    };
+    service.get = function() {
+        return _result;
+    };
+    return service;
+})
+
 .controller('WhatIsThisController', ['$scope', function($scope) {
 
 }])
 
 .controller('ValidatorController', [
-    '$scope', '$location',
-    function($scope, $location) {
+    '$scope', '$location', '$http', 'resultHolder',
+    function($scope, $location, $http, resultHolder) {
 
         document.title = '/contribute.json';
 
         $scope.validation = {};
         $scope.validation.url = '';
+        $scope.validation.method = 'url';
 
         $scope.validate = function() {
-            if (!$scope.validation.url.trim()) return;
-            var url = $scope.validation.url.trim();
-            $location.path('/' + encodeURIComponent(url));
-            // $location.path('/' + encodeURI(url));
-            return false;
+            if ($scope.validation.method === 'url') {
+                if (!$scope.validation.url.trim()) return;
+                var url = $scope.validation.url.trim();
+                $location.path('/' + encodeURIComponent(url));
+                // $location.path('/' + encodeURI(url));
+                return false;
+            } else if ($scope.validation.method === 'text') {
+                if (!$scope.validation.text.trim()) return;
+                    $http.post('/validate', $scope.validation.text)
+                    .success(function(response) {
+                        resultHolder.store(response);
+                        $location.path('/result');
+                    })
+                    .error(function() {
+                        console.warn(arguments);
+                    });
+            } else if ($scope.validation.method === 'file') {
+                var input = document.querySelector('form input[type="file"]');
+                if (!input.files.length) return;
+                var reader = new FileReader();
+                reader.onload = function(content) {
+                    $http.post('/validate', content.target.result)
+                    .success(function(response) {
+                        // console.log('RESPONSE', response);
+                        resultHolder.store(response);
+                        $location.path('/result');
+                    })
+                    .error(function() {
+                        console.warn(arguments);
+                    });
+                }
+                reader.readAsText(input.files[0]);
+            }
+        };
+
+        $scope.changeValidationMethod = function(method) {
+            $scope.validation.method = method;
         };
 }])
 
@@ -45,14 +90,14 @@ var app = angular.module('contribute.controllers', [])
 }])
 
 .controller('ValidationController', [
-    '$scope', '$http', '$routeParams',
-    function($scope, $http, $routeParams) {
+    '$scope', '$http', '$routeParams', '$location', 'resultHolder',
+    function($scope, $http, $routeParams, $location, resultHolder) {
         var url = $routeParams.wildcard;
-        document.title = 'Validating ' + url;
-        url = decodeURIComponent(url);
-        // console.log('Look up', url);
-
-
+        if (url) {
+            document.title = 'Validating ' + url;
+            url = decodeURIComponent(url);
+            // console.log('Look up', url);
+        }
         $scope.finished = false;
         $scope.error = null;
         $scope.url = url;
@@ -61,12 +106,11 @@ var app = angular.module('contribute.controllers', [])
             return JSON.stringify(obj, undefined, 4);
         }
 
-        $http({url: '/validate', method: 'GET', params: {url: url}})
-        .success(function(response) {
+        function showResult(response) {
             console.log(response);
             $scope.schema = pretty_json(response.schema);
             $scope.schema_url = response.schema_url;
-            $scope.response = pretty_json(response.response); // yuck!
+            $scope.response = pretty_json(response.response);  // yuck!
 
             if (response.schema_error) {
                 $scope.schema_error = response.schema_error;
@@ -76,10 +120,20 @@ var app = angular.module('contribute.controllers', [])
                 $scope.request_error = response.request_error;
             }
             $scope.finished = true;
-        })
-        .error(function(data, status) {
-            console.warn(data, status);
-        });
+        }
+
+        if (resultHolder.get()) {
+            showResult(resultHolder.get());
+        } else if (url) {
+            $http({url: '/validate', method: 'POST', params: {url: url}})
+            .success(showResult)
+            .error(function(data, status) {
+                console.warn(data, status);
+            });
+        } else {
+            $location.path('/');
+        }
+
 
 }])
 

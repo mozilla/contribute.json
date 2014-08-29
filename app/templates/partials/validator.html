@@ -1,15 +1,41 @@
 {% raw %}
 <form class="form-horizontal" role="form" ng-submit="validate()">
-  <div class="form-group form-group-lg">
+
+  <!-- by URL -->
+  <div class="form-group form-group-lg" ng-show="validation.method === 'url'">
     <label class="col-sm-2 control-label" for="formGroupInputLarge">URL</label>
     <div class="col-sm-10">
       <input class="form-control" type="text" name="url"
        ng-model="validation.url"
        id="formGroupInputLarge" placeholder="https://site.mozilla.org/contribute.json">
        <!-- <button type="submit" class="btn btn-primary btn-lg">Validate</button> -->
-
     </div>
-
   </div>
+
+  <!-- by textarea -->
+  <div class="form-group" ng-show="validation.method === 'text'">
+    <label class="col-sm-2 control-label" for="formGroupInputLarge">Text</label>
+    <div class="col-sm-10">
+      <textarea ng-model="validation.text" class="form-control" rows="10"></textarea>
+       <button type="submit" class="btn btn-primary">Validate</button>
+    </div>
+  </div>
+  </div>
+
+  <!-- by file -->
+  <div class="form-group" ng-show="validation.method === 'file'">
+    <label class="col-sm-2 control-label" for="formGroupInputLarge">File</label>
+    <div class="col-sm-10">
+      <input type="file">
+      <button type="submit" class="btn btn-primary btn-lgx">Validate</button>
+    </div>
+  </div>
+  <p>
+    Validate by:
+    <a href="" ng-class="{chosen: validation.method === 'url'}" ng-click="changeValidationMethod('url')">URL</a>,
+    <a href="" ng-class="{chosen: validation.method === 'text'}" ng-click="changeValidationMethod('text')">Text</a>,
+    <a href="" ng-class="{chosen: validation.method === 'file'}" ng-click="changeValidationMethod('file')">File</a>
+  </p>
+
 </form>
 {% endraw %}
