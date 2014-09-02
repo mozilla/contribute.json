@@ -10,7 +10,7 @@ import jsonschema
 import requests
 
 MEMCACHE_URL = os.environ.get('MEMCACHE_URL', '127.0.0.1:11211').split(',')
-DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
+DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes', 'on')
 APP_LOCATION = 'client'
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
@@ -37,7 +37,11 @@ def cache_get(key, default=None):
 
 @app.route('/contribute.json')
 def this_contribute_json():
-    return send_file('contribute.json')
+    if os.path.isfile('contribute.json'):
+        # when running in stackato
+        return send_file('contribute.json')
+    else:
+        return send_file('../contribute.json')
 
 
 @app.route('/')
