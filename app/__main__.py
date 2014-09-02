@@ -10,7 +10,7 @@ import jsonschema
 import requests
 
 MEMCACHE_URL = os.environ.get('MEMCACHE_URL', '127.0.0.1:11211').split(',')
-DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes', 'on')
+DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
 APP_LOCATION = 'client'
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
@@ -37,11 +37,7 @@ def cache_get(key, default=None):
 
 @app.route('/contribute.json')
 def this_contribute_json():
-    if os.path.isfile('contribute.json'):
-        # when running in stackato
-        return send_file('contribute.json')
-    else:
-        return send_file('../contribute.json')
+    return send_file('contribute.json')
 
 
 @app.route('/')
@@ -64,6 +60,7 @@ def catch_all(path):
     else:
         # print "falling back"
         return render_template('index.html')
+
 
 class ValidationView(MethodView):
 
@@ -125,7 +122,7 @@ class ExamplesView(MethodView):
 
     def get(self):
         urls = cache_get('urls_submitted', [])
-        this_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/flask-app/app/contribute.json'
+        this_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/contribute.json'
         if this_url not in urls:
             urls.append(this_url)
         return jsonify({'urls': urls})
