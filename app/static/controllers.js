@@ -1,4 +1,4 @@
-var app = angular.module('contribute.controllers', [])
+var app = angular.module('contribute.controllers', ['ngSanitize'])
 
 .factory('resultHolder', function() {
     var service = {};
@@ -106,8 +106,31 @@ var app = angular.module('contribute.controllers', [])
             return JSON.stringify(obj, undefined, 4);
         }
 
+        function findUrls(struct) {
+            var urls = [];
+            for (var key in struct) {
+                if (struct.hasOwnProperty(key)) {
+                    var value = struct[key];
+                    if (typeof value === 'object') {
+                        urls.push.apply(urls, findUrls(value));
+                    } else if (
+                        (value.substr(0, 7) === 'http://' || value.substr(0, 8) === 'https://')
+                        && value.indexOf(' ') === -1
+                    ) {
+                        urls.push(value);
+                    }
+                }
+            }
+            return urls;
+        }
+
+        function escapeRegExp(string){
+            return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        }
+
         function showResult(response) {
-            console.log(response);
+            // console.log(response);
+            $scope.urls_to_check = [];
             $scope.schema = pretty_json(response.schema);
             $scope.schema_url = response.schema_url;
             if (!response.request_error) {
@@ -122,6 +145,37 @@ var app = angular.module('contribute.controllers', [])
                 $scope.error = response.validation_error;
             } else if (response.request_error) {
                 $scope.request_error = response.request_error;
+            } else {
+                var urls = findUrls(response.response);
+                $scope.urls_to_check = urls;
+                urls.forEach(function(url) {
+                    $http.post('/validateurl', {url: url})
+                    .success(function(response) {
+                        var reg = new RegExp('"' + escapeRegExp(url) + '"');
+                        var tmpl;
+                        if (response.status_code === 200 || response.status_code === 302) {
+                            // console.log('Valid URL:', response.url);
+                            tmpl = '"<a href="' + url + '">' + url + '</a>"';
+                        } else {
+                            console.warn('Invalid URL:', response.url, response.status_code);
+                            tmpl = '"<a href="' + url + '" class="invalid-url" ' +
+                                   'title="Error code: ' + response.status_code + '">' +
+                                    url + '</a>"';
+                        }
+                        $scope.response = $scope.response.replace(
+                            reg,
+                            tmpl
+                        );
+
+                    }).error(function() {
+                        console.error(arguments);
+                    }).finally(function() {
+                        var index = $scope.urls_to_check.indexOf(url);
+                        if (index > -1) {
+                            $scope.urls_to_check.splice(index, 1);
+                        }
+                    });
+                });
             }
             $scope.finished = true;
         }

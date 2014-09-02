@@ -61,6 +61,7 @@ def catch_all(path):
         # print "falling back"
         return render_template('index.html')
 
+
 class ValidationView(MethodView):
 
     def post(self):
@@ -117,6 +118,30 @@ class ValidationView(MethodView):
 
 app.add_url_rule('/validate', view_func=ValidationView.as_view('validate'))
 
+
+
+class ValidateUrlView(MethodView):
+
+    def post(self):
+        url = request.json['url']
+        result = cache_get('validation-%s' % url)
+        if result is None:
+            result = {
+                'url': url,
+            }
+            try:
+                r = requests.get(url)
+                result['status_code'] = r.status_code
+            except requests.ConnectionError:
+                result['status_code'] = 500
+
+            if result['status_code'] >= 200 and result['status_code'] < 500:
+                cache_set('validation-%s' % url, result, 60)
+        return jsonify(result)
+
+
+app.add_url_rule('/validateurl',
+                 view_func=ValidateUrlView.as_view('validateurl'))
 
 class ExamplesView(MethodView):
 

@@ -42,3 +42,18 @@ form a.chosen {
 [numbered-lines] td div {
     display: block;
 }
+
+pre div a {
+    color: blue;
+    text-decoration: underline;
+}
+pre div a:hover {
+    color: darkblue;
+}
+pre div a:visited {
+    color: purple;
+}
+pre div a.invalid-url {
+    color: red;
+    text-decoration: line-through;
+}
