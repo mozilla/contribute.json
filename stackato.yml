@@ -1,4 +1,5 @@
 name: contribute
+app-dir: app
 url:
     - contribute.paas.allizom.org
 framework:
