@@ -77,6 +77,7 @@ class ValidationView(MethodView):
             except ValueError as exp:
                 return jsonify({
                     'request_error': str(exp),
+                    'response': request.data,
                 })
             url = None
 

@@ -45,4 +45,27 @@ angular.module('contribute', [
     ;
 }])
 
+.directive('numberedLines', function() {
+    return {
+        restrict: 'A',
+        replace: false,
+        scope: {
+            numberedLines: '='
+        },
+        template: '<table cellpadding="0" cellspacing="0"><tbody><tr>' +
+                '<td><pre>{{ lines }}</pre></td>' +
+                '<td><pre>{{ numberedLines }}</pre></td>' +
+                '</tr></tbody></table>',
+        controller: function($scope) {
+            $scope.$watch('numberedLines', function(value) {
+                var numLines = $scope.numberedLines.match(/\n/g).length + 1;
+                $scope.lines = '';
+                for (var i = 1; i <= numLines; i++) {
+                    $scope.lines += i + '\n';
+                }
+            });
+        }
+    };
+})
+
 ;

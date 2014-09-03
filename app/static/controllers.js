@@ -110,7 +110,11 @@ var app = angular.module('contribute.controllers', [])
             console.log(response);
             $scope.schema = pretty_json(response.schema);
             $scope.schema_url = response.schema_url;
-            $scope.response = pretty_json(response.response);  // yuck!
+            if (!response.request_error) {
+                $scope.response = pretty_json(response.response);  // yuck!
+            } else {
+                $scope.response = response.response;
+            }
 
             if (response.schema_error) {
                 $scope.schema_error = response.schema_error;

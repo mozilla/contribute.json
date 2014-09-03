@@ -13,9 +13,9 @@
 
       <h4 ng-if="url">Response</h4>
       <h4 ng-if="!url">Content</h4>
-<pre>{{ response }}</pre>
+      <div numbered-lines="response"></div>
       <h4><a href="{{ schema_url }}">Schema</a></h4>
-<pre>{{ schema }}</pre>
+      <div numbered-lines="schema"></div>
     </div>
 
     <div ng-if="schema_error">
@@ -27,9 +27,12 @@
       <p ng-if="!url">Failed to load the JSON data.</p>
       <p><code>{{ request_error }}</code></p>
 
+      <div ng-if="response" numbered-lines="response"></div>
+
     </div>
 
   </div>
 
 </div>
+
 {% endraw %}

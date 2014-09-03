@@ -2,3 +2,15 @@ form a.chosen {
     opacity: 0.3;
     cursor: default;
 }
+
+[numbered-lines] td:nth-child(1) pre {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+[numbered-lines] td:nth-child(2) {
+    width: 100%;
+}
+[numbered-lines] td:nth-child(2) pre {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
