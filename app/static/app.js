@@ -53,15 +53,15 @@ angular.module('contribute', [
             numberedLines: '='
         },
         template: '<table cellpadding="0" cellspacing="0"><tbody><tr>' +
-                '<td><pre>{{ lines }}</pre></td>' +
-                '<td><pre>{{ numberedLines }}</pre></td>' +
+                '<td><span ng-repeat="line in lineNumbers">{{ line }}</span></td>' +
+                '<td><pre><div ng-repeat="line in lines track by $index">{{ line }}</div></pre></td>' +
                 '</tr></tbody></table>',
         controller: function($scope) {
             $scope.$watch('numberedLines', function(value) {
-                var numLines = $scope.numberedLines.match(/\n/g).length + 1;
-                $scope.lines = '';
-                for (var i = 1; i <= numLines; i++) {
-                    $scope.lines += i + '\n';
+                $scope.lines = $scope.numberedLines.split(/\n/g);
+                $scope.lineNumbers = [];
+                for (var i = 1, L = $scope.lines.length; i <= L; i++) {
+                    $scope.lineNumbers.push(i);
                 }
             });
         }

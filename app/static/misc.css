@@ -3,14 +3,42 @@ form a.chosen {
     cursor: default;
 }
 
-[numbered-lines] td:nth-child(1) pre {
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
+[numbered-lines] {
+    overflow: auto;
+    border-radius: 3px;
 }
 [numbered-lines] td:nth-child(2) {
     width: 100%;
 }
+[numbered-lines] td:nth-child(1) pre {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
 [numbered-lines] td:nth-child(2) pre {
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+[numbered-lines] td,
+[numbered-lines] td pre {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #333;
+    font-family: Courier,monospace;
+
+}
+[numbered-lines] td:nth-child(1) {
+    text-align: right;
+    background-color: #efefef;
+    margin: 0;
+    padding: 4px;
+}
+[numbered-lines] td:nth-child(2) pre {
+    background-color: #efefef;
+    margin: 0;
+    padding: 4px;
+}
+[numbered-lines] td span,
+[numbered-lines] td div {
+    display: block;
 }
