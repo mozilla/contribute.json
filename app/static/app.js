@@ -54,7 +54,7 @@ angular.module('contribute', [
         },
         template: '<table cellpadding="0" cellspacing="0"><tbody><tr>' +
                 '<td><span ng-repeat="line in lineNumbers">{{ line }}</span></td>' +
-                '<td><pre><div ng-repeat="line in lines track by $index">{{ line }}</div></pre></td>' +
+                '<td><pre><div ng-repeat="line in lines track by $index" ng-bind-html="line"></div></pre></td>' +
                 '</tr></tbody></table>',
         controller: function($scope) {
             $scope.$watch('numberedLines', function(value) {

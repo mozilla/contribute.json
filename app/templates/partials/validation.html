@@ -14,6 +14,9 @@
       <h4 ng-if="url">Response</h4>
       <h4 ng-if="!url">Content</h4>
       <div numbered-lines="response"></div>
+      <p ng-if="urls_to_check.length">
+        Checking URLs found in the response. ({{ urls_to_check.length }} left)
+      </p>
       <h4><a href="{{ schema_url }}">Schema</a></h4>
       <div numbered-lines="schema"></div>
     </div>
