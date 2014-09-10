@@ -1,5 +1,7 @@
 name: contribute
 app-dir: app
+pre-push:
+    - cp ../contribute.json app/
 url:
     - contribute.paas.allizom.org
 framework:

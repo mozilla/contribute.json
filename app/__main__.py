@@ -147,7 +147,7 @@ class ExamplesView(MethodView):
 
     def get(self):
         urls = cache_get('urls_submitted', [])
-        this_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/flask-app/app/contribute.json'
+        this_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/contribute.json'
         if this_url not in urls:
             urls.append(this_url)
         return jsonify({'urls': urls})

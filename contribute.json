@@ -3,15 +3,18 @@
     "description": "A JSON schema for open-source project contribution data.",
     "repository": {
         "url": "https://github.com/mozilla/contribute.json",
-        "license": "Apache License, Version 2.0"
+        "license": "MPL2"
     },
     "bugs": {
+        "list": "https://github.com/mozilla/contribute.json/issues",
         "report": "https://github.com/mozilla/contribute.json/issues"
-    }
+    },
     "urls": {
-        "prod": "http://contribute.paas.allizom.org/"
-    }
+        "prod": "https://contribute.paas.allizom.org/"
+    },
     "keywords": [
+        "standards",
+        "getinvolved",
         "json",
         "javascript",
         "python"
