@@ -56,6 +56,7 @@ def cache_get(key, default=None):
 
 @app.route('/contribute.json')
 def this_contribute_json():
+    # See stackato.yml and how it copies this file from the root
     return send_file('contribute.json')
 
 
