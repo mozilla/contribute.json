@@ -2,7 +2,7 @@ name: contribute
 app-dir: app
 hooks:
   pre-staging:
-    - cp ../contribute.json app/
+    - cp contribute.json app/
 url:
     - contribute.paas.allizom.org
 framework:
