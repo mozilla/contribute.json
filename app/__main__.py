@@ -13,7 +13,6 @@ import requests
 
 MEMCACHE_URL = os.environ.get('MEMCACHE_URL', '127.0.0.1:11211').split(',')
 DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
-APP_LOCATION = 'client'
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
 
@@ -34,7 +33,6 @@ SAMPLE = """
 """.strip()
 
 
-# app = Flask(__name__, static_folder=os.path.join(APP_LOCATION, 'static'))
 app = Flask(__name__)
 cache = MemcachedCache(MEMCACHE_URL)
 
