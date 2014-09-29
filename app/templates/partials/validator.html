@@ -1,41 +1,84 @@
 {% raw %}
-<form class="form-horizontal" role="form" ng-submit="validate()">
+<section class="banner" ng-class="{'animate-height': validation.method === 'text'}">
+    <div class="wrapper center">
+        <h1>contribute.<span class="light">json</span></h1>
+        <p>Making open source contribution information easier to access, across projects</p>
 
-  <!-- by URL -->
-  <div class="form-group form-group-lg" ng-show="validation.method === 'url'">
-    <label class="col-sm-2 control-label" for="formGroupInputLarge">URL</label>
-    <div class="col-sm-10">
-      <input class="form-control" type="text" name="url"
-       ng-model="validation.url"
-       id="formGroupInputLarge" placeholder="https://site.mozilla.org/contribute.json">
-       <!-- <button type="submit" class="btn btn-primary btn-lg">Validate</button> -->
+        <form name="validator" ng-submit="validate()">
+
+            <ul class="input-type-switcher">
+                <li>
+                    <a href="" title="validate by URL"
+                       ng-class="{chosen: validation.method === 'url'}"
+                       ng-click="changeValidationMethod('url')">
+                        <span aria-hidden="true" data-icon="&#xe801;"></span>
+                        <span class="screen-reader-txt">validate by URL</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="validate via direct input"
+                       ng-class="{chosen: validation.method === 'text'}"
+                       ng-click="changeValidationMethod('text')">
+                        <span aria-hidden="true" data-icon="&#xe802;"></span>
+                        <span class="screen-reader-txt">validate via direct input</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="validate via file upload"
+                       ng-class="{chosen: validation.method === 'file'}"
+                       ng-click="changeValidationMethod('file')">
+                        <span aria-hidden="true" data-icon="&#xe800;"></span>
+                        <span class="screen-reader-txt">validate via file upload</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div id="validate-url" class="form-field" ng-show="validation.method === 'url'">
+                <label for="url" class="visually-hidden">Enter the URL of your contribute.json file</label>
+                <input type="url" name="url" id="url" ng-model="validation.url" placeholder="http://yourproject.org/contribute.json" />
+            </div>
+
+            <div id="validate-input" class="form-field" ng-show="validation.method === 'text'">
+                <label for="json" class="visually-hidden">Enter JSON</label>
+                <textarea name="json" id="json"  cols="20" rows="15" placeholder="Paste or enter your contribute.json document"></textarea>
+            </div>
+
+            <div id="validate-upload" class="form-field" ng-show="validation.method === 'file'">
+                <label for="file-contents" class="visually-hidden">Upload Your File</label>
+                <input type="file" name="file-contents" id="file-contents" />
+            </div>
+
+            <fieldset>
+              <!--
+                <label for="index" class="index">
+                    <input type="checkbox" name="index" id="index" />
+                    include in the <a href="projects.html">Who Uses</a> page?
+                </label> -->
+
+                <input type="submit" class="button-green" value="validate" />
+            </fieldset>
+        </form>
     </div>
-  </div>
-
-  <!-- by textarea -->
-  <div class="form-group" ng-show="validation.method === 'text'">
-    <label class="col-sm-2 control-label" for="formGroupInputLarge">Text</label>
-    <div class="col-sm-10">
-      <textarea ng-model="validation.text" class="form-control" rows="10"></textarea>
-       <button type="submit" class="btn btn-primary">Validate</button>
-    </div>
-  </div>
-  </div>
-
-  <!-- by file -->
-  <div class="form-group" ng-show="validation.method === 'file'">
-    <label class="col-sm-2 control-label" for="formGroupInputLarge">File</label>
-    <div class="col-sm-10">
-      <input type="file">
-      <button type="submit" class="btn btn-primary btn-lgx">Validate</button>
-    </div>
-  </div>
-  <p>
-    Validate by:
-    <a href="" ng-class="{chosen: validation.method === 'url'}" ng-click="changeValidationMethod('url')">URL</a>,
-    <a href="" ng-class="{chosen: validation.method === 'text'}" ng-click="changeValidationMethod('text')">Text</a>,
-    <a href="" ng-class="{chosen: validation.method === 'file'}" ng-click="changeValidationMethod('file')">File</a>
-  </p>
-
-</form>
+</section>
 {% endraw %}
+
+<section class="wrapper content">
+    <div class="content-column">
+        <h1>What is this?</h1>
+        <p>It's a project to find a common standard to describe all active Mozilla websites and projects.</p>
+        <h2>Use Cases:</h2>
+        <p>You have a skill, say AngularJS or C++, but don't know which projects use this. If you could collect all the keywords from all projects using contribute.json you could easily find out which projects to approach with your friendly skill.</p>
+        <p>You're browsing a site and discover that something is broken. You could just close the tab in anger or you can help out in some ways. Perhaps a good place is to file a bug report.</p>
+        <p>Or find out where the code is and go there directly and make a patch.</p>
+        <p>Or just find out which IRC channel, wiki page or mailing list people on the project hang out on.</p>
+        <p>You're a developer asked to help on a project and you set to work. Instead of asking all the usual questions like "Where is the code?", "Where is the staging server?", "Do we have a mailing list?" you can simply look all this up in the /contribute.json file.</p>
+    </div>
+
+    <div class="content-column">
+        <h1>How do I use it?</h1>
+        <p>The basics of using contribute.json is dead simple. Write a minimal contribute.json file like so:</p>
+<pre class="line-numbers"><code class="json">{{ SAMPLE }}</code></pre>
+        <p>Now simply save this file, and place it at the root of your projects repository. It's really that simple! For a more detailed look at the full schema for contribute.json,
+            <a href="schema.html">head over to the schema page</a>.</p>
+    </div>
+</section>

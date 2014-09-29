@@ -1,55 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A JSON schema for open-source project contribution data.">
-    <meta name="author" content="Mozilla WebDev">
+<html class="windows no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="A JSON schema for open-source project contribution data.">
+        <meta name="author" content="Mozilla WebDev">
 
-    <title>/contribute.json</title>
+        <title>Mozilla - contribute.json</title>
 
-    <link rel="stylesheet" media="screen,projection,tv" href="//mozorg.cdn.mozilla.net/media/css/styleguide-min.css?build=a912ca0" />
+        <link rel="shortcut icon" href="img/favicon.ico" />
+        {% if not DEBUG %}
+        <link rel="stylesheet" type="text/css" href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" media="screen">
+        {% endif %}
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sandstone/sandstone-resp.css') }}" media="screen">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='misc.css') }}" rel="stylesheet">
-    <style>
-    body { font-family: "Open Sans Light",X-LocaleSpecific-Light,"Open Sans",X-LocaleSpecific,sans-serif; }
-    h1 a { font-family: "Open Sans",X-LocaleSpecific-Light,"Open Sans",X-LocaleSpecific,sans-serif; }
-    pre { text-align: left; }
-    .result-good { color: green; }
-    .result-bad { color: red; }
-    #validation {
-        margin-bottom: 90px;
-    }
-    </style>
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/libs/prism.css') }}" media="screen"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contribute/contribute.css') }}" media="screen">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/misc.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='highlight/styles/default.css') }}">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <div class="site-wrapper" ng-app="contribute">
-
-      <div class="site-wrapper-inner">
-
-
-        <div class="cover-container">
-
-          <div class="inner cover">
-            <h1 class="cover-heading"><a href="/">/contribute.json</a></h1>
-            <h4>A JSON schema for open-source project contribution data.</h4>
-            <!-- <p class="lead">
-              A JSON schema for open-source project contribution data.
-            </p> -->
+    </head>
+    <body class="sand" ng-app="contribute">
+        <div id="outer-wrapper">
+            <div class="wrapper">
+                <header id="masthead">
+                    {% if not DEBUG %}
+                    <a href="/" id="tabzilla">Mozilla</a>
+                    {% endif %}
+                    <nav id="nav-main" role="menubar">
+                        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+                        <ul role="menu" id="nav-main-menu">
+                            <li role="menuitem" class="first"><a href="schema.html">The Schema</a></li>
+                            <li role="menuitem"><a href="projects.html">Who Uses It?</a></li>
+                            <li role="menuitem"><a href="//github.com/mozilla/contribute.json">Fork Us On Github</a></li>
+                        </ul>
+                    </nav>
+                    <h2><a href="/"><img src="{{ url_for('static', filename='img/sandstone/header-mozilla-stone.png') }}" alt="mozilla"></a></h2>
+                </header>
+            </div>
 
             <ng-view></ng-view>
 
@@ -69,33 +58,30 @@
             {% include "partials/validator.html" %}
             </script>
 
-          </div>
 
-          <div class="mastfoot">
-            <div class="inner">
-              <p>
-                <a href="/what-is-this?">What is this?</a>
-                &bull;
-                <a href="/examples">Examples and recent submissions</a>
-                &bull;
-                <a href="/https%253A%252F%252Fraw.githubusercontent.com%252Fmozilla%252Fcontribute.json%252Fflask-app%252Fapp%252Fcontribute.json">This site's /contribute.json</a>
-                &bull;
-                <a href="https://github.com/mozilla/contribute.json">On GitHub</a>
 
-              </p>
-            </div>
-          </div>
-
+            <footer id="colophon">
+                <div class="license center">
+                    <p><a href="/"><img src="{{ url_for('static', filename='img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a></p>
+                    <p>Portions of this content are &copy;2013–2014 by individual mozilla.org contributors. Content available under a <a href="//www.mozilla.org/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
+                    <p><a href="//github.com/mozilla/contribute.json">Contribute to this page</a></p>
+                </div>
+            </footer>
         </div>
 
-      </div>
+        <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        // <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+        // <script src="/js/libs/prism.js"></script>
+        //
+        // <script src="/js/contribute.js"></script>
+        // <script src="/js/site.js"></script> -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min.js"></script>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+        <script src="{{ url_for('static', filename='controllers.js') }}"></script>
+        <script src="{{ url_for('static', filename='highlight/highlight.pack.js') }}"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
 
-    </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min.js"></script>
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
-    <script src="{{ url_for('static', filename='controllers.js') }}"></script>
-  </body>
+    </body>
 </html>

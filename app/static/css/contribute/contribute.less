@@ -1,0 +1,266 @@
+@import '../sandstone/lib.less';
+@import '../sandstone/mixins.less';
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* sandstone default override */
+#outer-wrapper > .wrapper {
+    padding-bottom: @baseLine;
+}
+.wrapper {
+    padding-bottom: @baseLine * 2;
+    /* this is for developers [high-end machines] so,
+       let's give ourselves a little extra breathing room */
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+#colophon {
+    clear: both;
+}
+
+h1 {
+    font-size: 3rem;
+    text-shadow: 0;
+}
+h2 {
+    font-size: 2rem;
+}
+h4 {
+    margin-top: 2rem;
+}
+form {
+    margin-top: 1rem;
+}
+input {
+  padding: .5rem;
+  font-size: 1.2rem;
+  border-radius: 6px;
+}
+input[type="text"] {
+  border: solid 1px #333;
+  width: 460px;
+}
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    margin-left: .3rem;
+    border: 0;
+}
+nav {
+    a {
+        text-transform: uppercase;
+    }
+}
+/*
+pre {
+    max-height: 600px;
+}
+pre.line-numbers {
+    padding-left: 3rem;
+}
+*/
+main {
+    padding: 0 1.7rem;
+}
+.banner {
+    background: #64a4cd url(/static/img/validator_tile.gif) 0 0 repeat-x;
+    color: white;
+    margin: 1rem auto;
+    padding: 20px 0 0 0;
+    width: 100%;
+    min-height: 290px;
+    max-height: 310px;
+    .transition(max-height linear .75s);
+    h1 {
+        color: white;
+        font-size: 3.7rem;
+        font-weight: bold;
+        line-height: 75%;
+    }
+    a {
+        color: white;
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    p {
+        margin: 0 auto;
+        width: 40%;
+        font-family: 'Open Sans Light';
+        font-size: 1.2rem;
+        line-height: 120%;
+    }
+    form {
+        position: relative;
+        width: 60%;
+        margin: 25px auto 10px;
+        text-align: center;
+    }
+    fieldset {
+        margin: 10px 88px 0 0;
+        text-align: right;
+    }
+    input[type="url"] {
+        padding: .5rem 1rem;
+        width: 76%;
+        height: 55px;
+        font-size: 1.2rem;
+        border: 1px solid #333;
+        box-shadow: none;
+    }
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+    input[type="submit"] {
+        padding: .5rem 0;
+        border-radius: .1rem;
+        width: 150px;
+        font-size: 1.1rem;
+        font-weight: normal;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5),
+                    -1px -1px 3px rgba(0, 0, 0, 0.2);
+        &:hover {
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7),
+                        -1px -1px 3px rgba(0, 0, 0, 0.4);
+        }
+    }
+    input[type="file"] {
+        background-color: white;
+        padding: .7rem;
+        border: 1px solid #333;
+        .border-radius(3px);
+        width: 76%;
+    }
+    textarea {
+        border: 1px solid #333;
+        width: 76%;
+    }
+    .index {
+        margin-right: 1rem;
+        font-size: 18px;
+    }
+    .light {
+        font-family: 'Open Sans Light';
+        font-weight: 300;
+    }
+}
+.sub-page {
+    h2 {
+        font-size: 3rem;
+        letter-spacing: -2px;
+    }
+    .banner {
+        padding-top: 35px;
+        height: 200px;
+        /* override landing page */
+        min-height: 200px;
+    }
+}
+.input-type-switcher {
+    position: absolute;
+    top: -30px;
+    right: 13%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+        display: inline;
+    }
+    a {
+        text-decoration: none;
+    }
+}
+.content {
+    overflow: auto;
+    h1 {
+        font-size: 64px;
+    }
+}
+.content-column {
+    float: left;
+    margin: 0 10px 0 20px;
+    width: 560px;
+}
+.project {
+    #gradient > .vertical(#faf8f2, #efece0);
+    margin: 2rem 0 1rem;
+    padding: 1rem;
+    border: 10px solid white;
+    .box-shadow(2px 2px 5px rgba(0, 0, 0, 0.2););
+    h3 {
+        font-weight: bold;
+    }
+}
+.project-links {
+    margin: .5rem 0;
+    padding: 0;
+    list-style: none;
+    li {
+        margin-left: 0;
+    }
+}
+.keywords {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+        display: inline-block;
+        background-color: #333;
+        color: white;
+        margin-left: .5rem;
+        padding: 0.5rem;
+        border-radius: 3px;
+        min-width: 4rem;
+        text-align: center;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+.license {
+    margin: 0px auto;
+    width: 550px;
+    line-height: 150%;
+}
+.hidden {
+    display: none;
+}
+.animate-height {
+    max-height: 999px;
+}
+/* icons */
+[data-icon]:before {
+    font-family: 'icons';
+    font-size: 1.1rem;
+    content: attr(data-icon);
+    speak: none; /* Not to be trusted, but hey. */
+}
+.project {
+    [data-icon]:before {
+        padding-right: .5rem;
+    }
+}
+.screen-reader-txt {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+.visually-hidden { /*http://developer.yahoo.com/blogs/ydn/posts/2012/10/clip-your-hidden-content-for-better-accessibility/*/
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}

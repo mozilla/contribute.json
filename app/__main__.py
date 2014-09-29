@@ -4,7 +4,9 @@ import os
 import json
 
 from werkzeug.contrib.cache import MemcachedCache
-from flask import Flask, request, make_response, jsonify, send_file, render_template
+from flask import (
+    Flask, request, make_response, jsonify, send_file, render_template, abort
+)
 from flask.views import MethodView
 import jsonschema
 import requests
@@ -14,6 +16,23 @@ DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
 APP_LOCATION = 'client'
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
+
+SAMPLE = """
+{
+  "name": "contribute.json",
+  "description": "Standard to describe open source projects",
+  "repository": {
+    "url": "https://github.com/mozilla/contribute.json",
+    "license": "MPL2"
+  },
+  "keywords": [
+    "JSON",
+    "Python",
+    "Flask"
+  ]
+}
+""".strip()
+
 
 # app = Flask(__name__, static_folder=os.path.join(APP_LOCATION, 'static'))
 app = Flask(__name__)
@@ -47,19 +66,30 @@ def index_html():
 
 @app.route('/<path:path>')
 def catch_all(path):
+    context = {
+        'DEBUG': DEBUG,
+        'SAMPLE': SAMPLE,
+    }
     # if path == 'favicon.ico':
     #     path = 'static/favicon.ico'
-    path = path or 'index.html'
+    _, ext = os.path.splitext(path)
+    if path and ext in ('.png', '.gif', '.css', '.js'):
+        # most likely something's gone wrong
+        default = False
+    else:
+        path = path or 'index.html'
+        default = True
     # print "PATH", path, os.path.isfile(path)
     if os.path.isfile(os.path.join('templates', path)):
-        return render_template(path)
+        return render_template(path, **context)
     elif os.path.isfile(os.path.join('static', path)):
         return send_file(os.path.join('static', path))
     elif os.path.isfile(path):
         return send_file(path)
+    elif default:
+        return render_template('index.html', **context)
     else:
-        # print "falling back"
-        return render_template('index.html')
+        abort(404)
 
 
 class ValidationView(MethodView):
