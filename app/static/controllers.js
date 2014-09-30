@@ -118,7 +118,9 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
                         (value.substr(0, 7) === 'http://' || value.substr(0, 8) === 'https://')
                         && value.indexOf(' ') === -1
                     ) {
-                        urls.push(value);
+                        if (urls.indexOf(value) === -1) {
+                            urls.push(value);
+                        }
                     }
                 }
             }
@@ -152,7 +154,7 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
                 urls.forEach(function(url) {
                     $http.post('/validateurl', {url: url})
                     .success(function(response) {
-                        var reg = new RegExp('"' + escapeRegExp(url) + '"');
+                        var reg = new RegExp('"' + escapeRegExp(url) + '"', 'g');
                         var tmpl;
                         if (response.status_code === 200 || response.status_code === 302) {
                             // console.log('Valid URL:', response.url);
