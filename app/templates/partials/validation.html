@@ -2,7 +2,7 @@
 <section class="wrapper content">
   <div id="validation">
     <p ng-if="!finished">Loading loading loading...</p>
-    <div ng-if="finished">
+    <div ng-if="finished && !horribly_wrong">
       <h4 ng-if="url">URL: <a href="{{ url }}"><code>{{ url }}</code></a></h4>
       <div ng-if="!(schema_error || request_error)">
         <h2 ng-show="error" class="result-bad">
@@ -35,6 +35,14 @@
 
       </div>
 
+    </div>
+
+    <div ng-show="horribly_wrong">
+      <p style="color:red; margin: 50px">
+        <b>Sorry.</b><br>
+        Something went horribly wrong. The request to the server couldn't
+        even complete. Check the Web Console for possible additional errors.
+      </p>
     </div>
 
   </div>

@@ -101,6 +101,7 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
         $scope.finished = false;
         $scope.error = null;
         $scope.url = url;
+        $scope.horribly_wrong = false;
 
         function pretty_json(obj) {
             return JSON.stringify(obj, undefined, 4);
@@ -186,6 +187,8 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
             $http({url: '/validate', method: 'POST', params: {url: url}})
             .success(showResult)
             .error(function(data, status) {
+                $scope.horribly_wrong = true;
+                $scope.finished = true;
                 console.warn(data, status);
             });
         } else {
