@@ -96,6 +96,15 @@ class ValidationView(MethodView):
     def post(self):
         if 'url' in request.args:
             url = request.args['url']
+            # We need to make an exception. We can't load this sites
+            # /contribute.json because since this is running in a single-thread
+            # single-worker, we're running into a strange chicken and egg
+            # situation.
+            if url == request.host_url + 'contribute.json':
+                url = (
+                    'https://raw.githubusercontent.com/mozilla/contribute.json'
+                    '/master/contribute.json'
+                )
             try:
                 response = requests.get(url)
                 content = response.json()
