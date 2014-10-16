@@ -34,6 +34,10 @@ angular.module('contribute', [
         templateUrl: 'validation.html',
         controller: 'ValidationController'
     })
+    .when('/schema', {
+        templateUrl: 'partials/schema.html',
+        controller: 'SchemaController'
+    })
     .when('/:wildcard', {
         templateUrl: 'validation.html',
         controller: 'ValidationController'

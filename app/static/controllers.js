@@ -16,6 +16,10 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
 
 }])
 
+.controller('SchemaController', ['$scope', function($scope) {
+    hljs.highlightBlock(document.querySelector('.content-column pre code'));
+}])
+
 .controller('ValidatorController', [
     '$scope', '$location', '$http', 'resultHolder',
     function($scope, $location, $http, resultHolder) {
