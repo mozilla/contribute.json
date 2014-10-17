@@ -76,10 +76,21 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
     function($scope, $http) {
         $scope.loading = true;
         document.title = 'Examples of contribute.json';
+        $scope.projects = [];
 
         $http.get('/examples.json')
         .success(function(response) {
             $scope.urls = response.urls;
+            $scope.urls.forEach(function(url) {
+                $http.get('/load-example?url=' + encodeURIComponent(url))
+                .success(function(response) {
+                    if (response.project) {
+                        $scope.projects.push(response.project);
+                    } else {
+                        console.warn('Failed to get a project for', url);
+                    }
+                });
+            });
         })
         .error(function(data, status) {
             console.error(data, status);
@@ -87,6 +98,10 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
         .finally(function() {
             $scope.loading = false;
         });
+
+        $scope.getDataIcon = function(label) {
+            return '&#xe803;';
+        };
 
         $scope.urlToLink = function(url) {
             return '/' + encodeURIComponent(encodeURIComponent(url));
