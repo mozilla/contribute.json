@@ -99,13 +99,6 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
             $scope.loading = false;
         });
 
-        $scope.getDataIcon = function(label) {
-            return '&#xe803;';
-        };
-
-        $scope.urlToLink = function(url) {
-            return '/' + encodeURIComponent(encodeURIComponent(url));
-        };
 }])
 
 .controller('ValidationController', [
