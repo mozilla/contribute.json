@@ -1,0 +1,6 @@
+# Enter all the URLs you know of that uses contribute.json
+https://www.mozilla.org/contribute.json
+https://air.mozilla.org/contribute.json
+https://developer.mozilla.org/contribute.json
+https://peekaboo.mozilla.org/contribute.json
+https://crash-stats.mozilla.com/contribute.json
