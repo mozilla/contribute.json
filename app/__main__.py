@@ -69,6 +69,9 @@ def catch_all(path):
         'DEBUG': DEBUG,
         'SAMPLE': SAMPLE,
     }
+    if path == 'partials/schema.html':
+        # only this partial needs this
+        context['SCHEMA'] = json.dumps(get_schema(), indent=4)
     # if path == 'favicon.ico':
     #     path = 'static/favicon.ico'
     _, ext = os.path.splitext(path)
@@ -90,6 +93,14 @@ def catch_all(path):
     else:
         abort(404)
 
+
+def get_schema():
+    schema_content = cache_get('schema')
+    if schema_content is None:
+        schema = requests.get(SCHEMA_URL)
+        schema_content = schema.json()
+        cache_set('schema', schema_content, 60 * 60)
+    return schema_content
 
 class ValidationView(MethodView):
 
@@ -120,11 +131,7 @@ class ValidationView(MethodView):
                 })
             url = None
 
-        schema_content = cache_get('schema')
-        if schema_content is None:
-            schema = requests.get(SCHEMA_URL)
-            schema_content = schema.json()
-            cache_set('schema', schema_content, 60 * 60)
+        schema_content = get_schema()
 
         context = {
             'schema': schema_content,
@@ -155,7 +162,6 @@ class ValidationView(MethodView):
 
 
 app.add_url_rule('/validate', view_func=ValidationView.as_view('validate'))
-
 
 
 class ValidateUrlView(MethodView):
