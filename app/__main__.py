@@ -199,8 +199,9 @@ class ExamplesView(MethodView):
             assert response.status_code == 200, response.status_code
             known_urls = []
             for line in response.content.splitlines():
-                if line.strip() and not line.strip().startswith('#'):
-                    known_urls.append(line.strip())
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    known_urls.append(line)
             cache_set('known_urls', known_urls, 60 * 60)
         return jsonify({'urls': known_urls})
 
