@@ -2,6 +2,7 @@
 
 import os
 import json
+import hashlib
 
 from werkzeug.contrib.cache import MemcachedCache
 from flask import (
@@ -15,6 +16,8 @@ MEMCACHE_URL = os.environ.get('MEMCACHE_URL', '127.0.0.1:11211').split(',')
 DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
+
+KNOWN_URLS_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/knownurls.txt'
 
 SAMPLE = """
 {
@@ -190,14 +193,51 @@ app.add_url_rule('/validateurl',
 class ExamplesView(MethodView):
 
     def get(self):
-        urls = cache_get('urls_submitted', [])
-        this_url = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/contribute.json'
-        if this_url not in urls:
-            urls.append(this_url)
-        return jsonify({'urls': urls})
+        known_urls = cache_get('known_urls')
+        if known_urls is None:
+            response = requests.get(KNOWN_URLS_URL)
+            assert response.status_code == 200, response.status_code
+            known_urls = []
+            for line in response.content.splitlines():
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    known_urls.append(line)
+            cache_set('known_urls', known_urls, 60 * 60)
+        return jsonify({'urls': known_urls})
 
 
 app.add_url_rule('/examples.json', view_func=ExamplesView.as_view('examples'))
+
+
+class LoadView(MethodView):
+
+    def get(self):
+        url = request.args['url']
+        cache_key = 'project_%s' % hashlib.md5(url).hexdigest()
+        project = cache_get(cache_key)
+        if project is None:
+            response = requests.get(url)
+            if response.status_code == 200:
+                project = response.json()
+                project['_url'] = url
+                project['links'] = []
+                if project.get('urls'):
+                    if project.get('urls').get('prod'):
+                        project['links'].append({
+                            'url': project['urls']['prod'],
+                            'label': 'prod'
+                        })
+                    if project.get('repository').get('url'):
+                        project['links'].append({
+                            'url': project['repository']['url'],
+                            'label': 'repository'
+                        })
+                cache_set(cache_key, project, 60 * 60)
+
+        return jsonify({'project': project})
+
+
+app.add_url_rule('/load-example', view_func=LoadView.as_view('load_example'))
 
 
 if __name__ == '__main__':

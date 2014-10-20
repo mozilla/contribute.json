@@ -1,9 +1,32 @@
-{% raw %}
-<p ng-show="loading">Loading loading loading...</p>
-<table class="table">
-  <tr ng-repeat="url in urls">
-    <td><a href="{{ urlToLink(url) }}">{{ url }}</a></td>
-  </tr>
-</table>
-<p ng-if="!loading && !urls.length">No previous examples available at the moment.</p>
-{% endraw %}
+{% include "_banner.html" %}
+
+<section class="wrapper content">
+    <h1>Examples of Use</h1>
+
+    {% raw %}
+    <p ng-show="loading">Loading loading loading...</p>
+    <section class="project" ng-repeat="project in projects">
+        <h3>{{ project.name }}</h3>
+        <a ng-href="project._url">{{ project._url }}</a>
+        <p>{{ project.description }}</p>
+
+        <h4>Project Links</h4>
+        <ul class="project-links">
+            <li ng-repeat="link in project.links">
+                <a ng-href="link.url">
+                    <span aria-hidden="true" data-icon="&#xe803;" ng-if="link.label=='repository'">{{ link.url }}</span>
+                    <span aria-hidden="true" data-icon="&#xe801;" ng-if="link.label=='prod'">{{ link.url }}</span>
+                </a>
+            </li>
+        </ul>
+
+        <div ng-if="project.keywords">
+            <h4>Areas of Expertise</h4>
+            <ul class="keywords">
+                <li ng-repeat="tag in project.keywords">{{ tag }}</li>
+            </ul>
+        </div>
+    </section>
+    {% endraw %}
+
+</section>
