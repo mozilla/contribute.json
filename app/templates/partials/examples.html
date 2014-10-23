@@ -7,13 +7,13 @@
     <p ng-show="loading">Loading loading loading...</p>
     <section class="project" ng-repeat="project in projects">
         <h3>{{ project.name }}</h3>
-        <a ng-href="project._url">{{ project._url }}</a>
+        <a ng-href="{{ project._url }}">{{ project._url }}</a>
         <p>{{ project.description }}</p>
 
         <h4>Project Links</h4>
         <ul class="project-links">
             <li ng-repeat="link in project.links">
-                <a ng-href="link.url">
+                <a ng-href="{{ link.url }}">
                     <span aria-hidden="true" data-icon="&#xe803;" ng-if="link.label=='repository'">{{ link.url }}</span>
                     <span aria-hidden="true" data-icon="&#xe801;" ng-if="link.label=='prod'">{{ link.url }}</span>
                 </a>
