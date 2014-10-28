@@ -5,3 +5,4 @@ https://developer.mozilla.org/contribute.json
 https://peekaboo.mozilla.org/contribute.json
 https://crash-stats.mozilla.com/contribute.json
 https://raw.githubusercontent.com/mozilla/buddyup/master/contribute.json
+https://github.com/ShaguftaMethwani/oneanddone/blob/master/contribute.json
