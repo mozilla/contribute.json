@@ -92,10 +92,16 @@ cd app
 # intall the requirements
 pip install -r requirements.txt
 
+# install the npm dependencies
+npm install
+
+# generate the CSS files (use `grunt watch` to work on the LESS files)
+grunt less
+
 # Run the app with
 DEBUG=true python .
 
-open localhost:5000/
+open http://localhost:5000/
 ```
 
 NB! Most of the functionality is built as an [AngularJS](https://angularjs.org/) app.
