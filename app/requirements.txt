@@ -13,3 +13,4 @@ six==1.8.0
 cffi==0.8.6
 ndg-httpsclient==0.3.2
 pyasn1==0.1.7
+pyOpenSSL==0.14
