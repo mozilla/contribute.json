@@ -12,9 +12,16 @@ mem: 128M
 instances: 1
 requirements:
     pypm:
-        - python-memcached
-        - requests
-        - jsonschema
+       - Flask==0.10.1
+       - Jinja2==2.7.3
+       - itsdangerous==0.24
+       - python-memcached==1.53
+       - jsonschema==2.3.0
+       - requests==2.3.0
+       - pyOpenSSL
+       - ndg-httpsclient
+       - pyasn1
+
 services:
     ${name}-memcache: memcached
 processes:

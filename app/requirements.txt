@@ -8,3 +8,6 @@ python-memcached==1.53
 jsonschema==2.3.0
 requests==2.3.0
 six==1.8.0
+pyOpenSSL
+ndg-httpsclient
+pyasn1
