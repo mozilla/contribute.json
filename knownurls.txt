@@ -8,3 +8,4 @@ https://oneanddone.mozilla.org/contribute.json
 https://peekaboo.mozilla.org/contribute.json
 https://www.mozilla.org/contribute.json
 https://reps.mozilla.org/contribute.json
+https://moztrap.mozilla.org/contribute.json
