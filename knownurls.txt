@@ -11,3 +11,4 @@ https://reps.mozilla.org/contribute.json
 https://moztrap.mozilla.org/contribute.json
 https://marketplace.firefox.com/contribute.json
 https://mozillians.org/contribute.json
+https://badges.mozilla.org/contribute.json
