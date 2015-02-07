@@ -72,11 +72,12 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
 }])
 
 .controller('ExamplesController', [
-    '$scope', '$http',
-    function($scope, $http) {
+    '$scope', '$http', '$routeParams',
+    function($scope, $http, $routeParams) {
         $scope.loading = true;
         document.title = 'Examples of contribute.json';
         $scope.projects = [];
+        var tech = $routeParams.tech;
 
         $http.get('/examples.json')
         .success(function(response) {
@@ -85,7 +86,9 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
                 $http.get('/load-example?url=' + encodeURIComponent(url))
                 .success(function(response) {
                     if (response.project) {
-                        $scope.projects.push(response.project);
+                        if (tech === undefined || response.project.keywords.indexOf(tech) !== -1) {
+                            $scope.projects.push(response.project);
+                        }
                     } else {
                         console.warn('Failed to get a project for', url);
                     }
