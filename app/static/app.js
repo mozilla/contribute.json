@@ -22,11 +22,7 @@ angular.module('contribute', [
      * leave it on the server and pull it in with a full AJAX URL.
      */
     $routeProvider
-    .when('/examples/', {
-        templateUrl: 'examples.html',
-        controller: 'ExamplesController'
-    })
-    .when('/examples/:tech', {
+    .when('/examples/:tech?', {
         templateUrl: 'examples.html',
         controller: 'ExamplesController'
     })
