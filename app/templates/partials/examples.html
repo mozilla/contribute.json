@@ -1,12 +1,14 @@
 {% include "_banner.html" %}
 
 <section class="wrapper content">
-    <div class='content-column'>
+    <div class="content-column">
       <h1>Examples of Use</h1>
     </div>
 
-    <div class='content-column u-padding'>
-      <input type='text' class='u-padding pull-right' ng-model='searchText.keywords' placeholder='Filter by area of expertise..'/>
+    <div class="content-column u-padding">
+      <input type="text" class="u-padding pull-right filter-by-tag"
+        ng-model="searchText.keywords"
+        placeholder="Filter by tag...">
     </div>
   </div>
 
