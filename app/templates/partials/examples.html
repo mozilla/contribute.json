@@ -1,11 +1,21 @@
 {% include "_banner.html" %}
 
 <section class="wrapper content">
-    <h1>Examples of Use</h1>
+    <div class="content-column">
+      <h1>Examples of Use</h1>
+    </div>
 
+    <div class="content-column u-padding">
+      <input type="text" class="u-padding pull-right filter-by-tag"
+        ng-model="searchText.keywords"
+        placeholder="Filter by tag...">
+    </div>
+  </div>
+
+<section class="wrapper content">
     {% raw %}
     <p ng-show="loading">Loading loading loading...</p>
-    <section class="project" ng-repeat="project in projects">
+    <section class="project" ng-repeat="project in projects | filter:searchText">
         <h3>{{ project.name }}</h3>
         <a ng-href="{{ project._url }}">{{ project._url }}</a>
         <p>{{ project.description }}</p>

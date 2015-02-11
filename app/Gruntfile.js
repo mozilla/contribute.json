@@ -60,8 +60,8 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['**/*.less'],
-                tasks: ['less:sandstone'],
+                files: ['static/css/**/*.less'],
+                tasks: ['less'],
                 options: {
                     spawn: false,
                     livereload: true
@@ -70,14 +70,12 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint')
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-css');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['less', 'watch']);
     grunt.registerTask('lintify', ['jshint', 'csslint']);
-    // grunt.registerTask('prep_prod', ['less:sandstone', 'lintify', 'less:sandstone_prod']);
-    // grunt.registerTask('prep_prod', ['less:sandstone', 'less:sandstone_prod']);
     grunt.registerTask('prep_prod', ['less']);
 };
