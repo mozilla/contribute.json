@@ -40,7 +40,8 @@
 
             <div id="validate-input" class="form-field" ng-show="validation.method === 'text'">
                 <label for="json" class="visually-hidden">Enter JSON</label>
-                <textarea name="json" id="json"  cols="20" rows="15" placeholder="Paste or enter your contribute.json document"></textarea>
+                <textarea name="json" id="json"  cols="20" rows="15" placeholder="Paste or enter your contribute.json document"
+                 ng-model="validation.text"></textarea>
             </div>
 
             <div id="validate-upload" class="form-field" ng-show="validation.method === 'file'">
