@@ -17,7 +17,9 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
 }])
 
 .controller('SchemaController', ['$scope', function($scope) {
+    document.title = 'The Schema';
     hljs.highlightBlock(document.querySelector('.content-column pre code'));
+
 }])
 
 .controller('ValidatorController', [
@@ -108,7 +110,8 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
         if (url) {
             document.title = 'Validating ' + url;
             url = decodeURIComponent(url);
-            // console.log('Look up', url);
+        } else {
+            document.title = 'Validation result';
         }
         $scope.finished = false;
         $scope.error = null;
