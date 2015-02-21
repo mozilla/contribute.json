@@ -9,13 +9,10 @@
         <title>Mozilla - contribute.json</title>
 
         <link rel="shortcut icon" href="img/favicon.ico" />
-        {% if not DEBUG %}
-        <link rel="stylesheet" type="text/css" href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" media="screen">
-        {% endif %}
+        <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
 
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sandstone/sandstone-resp.css') }}" media="screen">
 
-        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/libs/prism.css') }}" media="screen"> -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contribute/contribute.css') }}" media="screen">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/misc.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='highlight/styles/default.css') }}">
@@ -24,19 +21,21 @@
     <body class="sand" ng-app="contribute">
         <div id="outer-wrapper">
             <div class="wrapper">
-                <header id="masthead">
-                    {% if not DEBUG %}
-                    <a href="/" id="tabzilla">Mozilla</a>
-                    {% endif %}
-                    <nav id="nav-main" role="menubar">
-                        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
-                        <ul role="menu" id="nav-main-menu">
-                            <li role="menuitem" class="first"><a href="/schema">The Schema</a></li>
-                            <li role="menuitem"><a href="/examples">Who Uses It?</a></li>
-                            <li role="menuitem"><a href="//github.com/mozilla/contribute.json">Fork Us On Github</a></li>
-                        </ul>
-                    </nav>
-                    <h2><a href="/"><img src="{{ url_for('static', filename='img/sandstone/header-mozilla-stone.png') }}" alt="mozilla"></a></h2>
+              <header id="masthead">
+                <a href="https://www.mozilla.org/" id="tabzilla">mozilla</a>
+                <nav id="nav-main" role="menubar">
+                    <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+                    <ul role="menu" id="nav-main-menu">
+                        <li role="menuitem" class="first"><a href="/schema">The Schema</a></li>
+                        <li role="menuitem"><a href="/examples">Who Uses It?</a></li>
+                        <li role="menuitem"><a href="//github.com/mozilla/contribute.json">Fork Us On Github</a></li>
+                    </ul>
+                </nav>
+                <h2>
+                  <a href="/">
+                    <img src="{{ url_for('static', filename='img/sandstone/header-mozilla-stone.png') }}" alt="mozilla">
+                  </a>
+                </h2>
                 </header>
             </div>
 
@@ -69,12 +68,6 @@
             </footer>
         </div>
 
-        <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        // <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
-        // <script src="/js/libs/prism.js"></script>
-        //
-        // <script src="/js/contribute.js"></script>
-        // <script src="/js/site.js"></script> -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min.js"></script>
@@ -82,6 +75,6 @@
         <script src="{{ url_for('static', filename='controllers.js') }}"></script>
         <script src="{{ url_for('static', filename='highlight/highlight.pack.js') }}"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-
+        <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
     </body>
 </html>

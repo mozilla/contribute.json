@@ -13,11 +13,9 @@
 }
 .wrapper {
     padding-bottom: @baseLine * 2;
-    /* this is for developers [high-end machines] so,
-       let's give ourselves a little extra breathing room */
-    width: 1200px;
     margin: 0 auto;
     position: relative;
+    max-width: 1200px;
 }
 #colophon {
     clear: both;
@@ -29,6 +27,9 @@ h1 {
 }
 h2 {
     font-size: 2rem;
+    @media all and (max-width: 768px) {
+        display: none;
+    }
 }
 h4 {
     margin-top: 2rem;
@@ -56,14 +57,7 @@ nav {
         text-transform: uppercase;
     }
 }
-/*
-pre {
-    max-height: 600px;
-}
-pre.line-numbers {
-    padding-left: 3rem;
-}
-*/
+
 main {
     padding: 0 1.7rem;
 }
@@ -81,6 +75,10 @@ main {
         font-size: 3.7rem;
         font-weight: bold;
         line-height: 75%;
+
+        @media all and (max-width: 768px) {
+            font-size: 2.5rem;
+        }
     }
     a {
         color: white;
@@ -95,10 +93,16 @@ main {
         font-family: 'Open Sans Light';
         font-size: 1.2rem;
         line-height: 120%;
+        @media all and (max-width: 768px) {
+            width: 100%;
+        } 
     }
     form {
         position: relative;
         width: 60%;
+        @media all and (max-width: 768px) {
+            width: 100%;
+        } 
         margin: 25px auto 10px;
         text-align: center;
     }
@@ -113,6 +117,9 @@ main {
         font-size: 1.2rem;
         border: 1px solid #333;
         box-shadow: none;
+        @media all and (max-width: 768px) {
+            width: 100%;
+        } 
     }
     input[type="checkbox"] {
         width: 20px;
@@ -168,14 +175,13 @@ main {
 }
 
 .input-type-switcher {
-    position: absolute;
-    top: -30px;
-    right: 13%;
     margin: 0;
-    padding: 0;
+    padding: 0 0 10px 0;
     list-style: none;
     li {
         display: inline;
+        margin: 0px;
+        padding: 10px;
     }
     a {
         text-decoration: none;
@@ -189,8 +195,12 @@ main {
 }
 .content-column {
     float: left;
-    margin: 0 10px 0 20px;
-    width: 560px;
+    padding: 0 10px 0 20px;
+    width: 50%;
+    @media all and (max-width: 768px) {
+        padding: 5px;
+        width: 100%;
+    }
 }
 .project {
     #gradient > .vertical(#faf8f2, #efece0);
@@ -230,7 +240,6 @@ main {
 }
 .license {
     margin: 0px auto;
-    width: 550px;
     line-height: 150%;
 }
 .hidden {
