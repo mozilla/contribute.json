@@ -27,9 +27,6 @@ h1 {
 }
 h2 {
     font-size: 2rem;
-    @media all and (max-width: 768px) {
-        display: none;
-    }
 }
 h4 {
     margin-top: 2rem;
@@ -245,8 +242,15 @@ main {
     margin: 0px auto;
     line-height: 150%;
 }
+
 .hidden {
     display: none;
+}
+
+.hidden-xs {
+    @media all and (max-width: 768px) {
+      display: none;
+    }
 }
 .animate-height {
     max-height: 999px;
