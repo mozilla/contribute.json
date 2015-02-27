@@ -4,3 +4,5 @@ app/static/css/sandstone/sandstone-resp.min.css
 app/static/css/misc.css
 app/contribute.json
 app/node_modules/
+
+.DS_Store
