@@ -26,21 +26,21 @@
                 <nav id="nav-main" role="menubar">
                     <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
                     <ul role="menu" id="nav-main-menu">
-                        <li role="menuitem" class="first"><a href="/">Home</a></li>
-                        <li role="menuitem"><a href="/schema">The Schema</a></li>
-                        <li role="menuitem"><a href="/examples">Examples of Use</a></li>
-                        <li role="menuitem"><a href="//github.com/mozilla/contribute.json">Fork Us On Github</a></li>
+                        <li role="menuitem" class="first"><a ui-sref="validator">Home</a></li>
+                        <li role="menuitem"><a ui-sref="schema">The Schema</a></li>
+                        <li role="menuitem"><a ui-sref="examples">Examples of Use</a></li>
+                        <li role="menuitem"><a href="https://github.com/mozilla/contribute.json">Fork Us On Github</a></li>
                     </ul>
                 </nav>
                 <h2 class='hidden-xs'>
-                  <a href="/">
+                  <a ui-sref="validator">
                     <img src="{{ url_for('static', filename='img/sandstone/header-mozilla-stone.png') }}" alt="mozilla">
                   </a>
                 </h2>
                 </header>
             </div>
 
-            <ng-view></ng-view>
+            <ui-view></ui-view>
 
             <script type="text/ng-template" id="validation.html">
             {% include "partials/validation.html" %}
@@ -62,16 +62,16 @@
 
             <footer id="colophon">
                 <div class="license center">
-                    <p><a href="/"><img src="{{ url_for('static', filename='img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a></p>
+                    <p><a ui-sref="validator"><img src="{{ url_for('static', filename='img/sandstone/footer-mozilla.png') }}" alt="mozilla"></a></p>
                     <p>Portions of this content are &copy;2013–2014 by individual mozilla.org contributors. Content available under a <a href="//www.mozilla.org/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
-                    <p><a href="//github.com/mozilla/contribute.json">Contribute to this page</a></p>
+                    <p><a href="https://github.com/mozilla/contribute.json">Contribute to this page</a></p>
                 </div>
             </footer>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-sanitize.min.js"></script>
+        <script src="{{ url_for('static', filename='angular-ui-router.min.js') }}"></script>
         <script src="{{ url_for('static', filename='app.js') }}"></script>
         <script src="{{ url_for('static', filename='controllers.js') }}"></script>
         <script src="{{ url_for('static', filename='highlight/highlight.pack.js') }}"></script>
