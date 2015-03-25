@@ -1,14 +1,14 @@
 angular.module('contribute', [
-    'ngRoute',
+    'ui.router',
     'contribute.controllers'
 ])
 
-.config(['$routeProvider', '$locationProvider',
-    function ($routeProvider, $locationProvider) {
+.config(['$stateProvider', '$locationProvider',
+    function ($stateProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     /*
-     * With routeProvider there are two ways of pointing to a template using
+     * With stateProvider there are two ways of pointing to a template using
      * the `templateUrl` option.
      * Either it's an actual HTTP GET URL like "/partials/examples.html"
      * Or it's an ID of a <script> tag that might look like this:
@@ -21,28 +21,34 @@ angular.module('contribute', [
      * very few very rarely will need its content it might be best to just
      * leave it on the server and pull it in with a full AJAX URL.
      */
-    $routeProvider
-    .when('/examples', {
+    $stateProvider
+    .state('examples', {
+        url: '/examples',
         templateUrl: 'examples.html',
         controller: 'ExamplesController'
     })
-    .when('/what-is-this', {
+    .state('whatIsThis', {
+        url: '/what-is-this',
         templateUrl: 'what-is-this.html',
         controller: 'WhatIsThisController'
     })
-    .when('/result', {
+    .state('result', {
+        url: '/result',
         templateUrl: 'validation.html',
         controller: 'ValidationController'
     })
-    .when('/schema', {
+    .state('schema', {
+        url: '/schema',
         templateUrl: 'partials/schema.html',
         controller: 'SchemaController'
     })
-    .when('/:wildcard', {
+    .state('wildcard', {
+        url: '/:url',
         templateUrl: 'validation.html',
         controller: 'ValidationController'
     })
-    .when('/', {
+    .state('validator', {
+        url: '/',
         templateUrl: 'validator.html',
         controller: 'ValidatorController'
     })

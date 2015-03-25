@@ -23,8 +23,8 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
 }])
 
 .controller('ValidatorController', [
-    '$scope', '$location', '$http', 'resultHolder',
-    function($scope, $location, $http, resultHolder) {
+    '$scope', '$state', '$http', 'resultHolder',
+    function($scope, $state, $http, resultHolder) {
 
         document.title = '/contribute.json';
 
@@ -36,15 +36,14 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
             if ($scope.validation.method === 'url') {
                 if (!$scope.validation.url.trim()) return;
                 var url = $scope.validation.url.trim();
-                $location.path('/' + encodeURIComponent(url));
-                // $location.path('/' + encodeURI(url));
+                $state.go('wildcard', {url: url});
                 return false;
             } else if ($scope.validation.method === 'text') {
                 if (!$scope.validation.text.trim()) return;
                     $http.post('/validate', $scope.validation.text)
                     .success(function(response) {
                         resultHolder.store(response);
-                        $location.path('/result');
+                        $state.go('result');
                     })
                     .error(function() {
                         console.warn(arguments);
@@ -58,7 +57,7 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
                     .success(function(response) {
                         // console.log('RESPONSE', response);
                         resultHolder.store(response);
-                        $location.path('/result');
+                        $state.go('result');
                     })
                     .error(function() {
                         console.warn(arguments);
@@ -104,9 +103,9 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
 }])
 
 .controller('ValidationController', [
-    '$scope', '$http', '$routeParams', '$location', 'resultHolder',
-    function($scope, $http, $routeParams, $location, resultHolder) {
-        var url = $routeParams.wildcard;
+    '$scope', '$http', '$stateParams', '$state', 'resultHolder',
+    function($scope, $http, $stateParams, $state, resultHolder) {
+        var url = $stateParams.url;
         if (url) {
             document.title = 'Validating ' + url;
             url = decodeURIComponent(url);
@@ -209,7 +208,7 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
                 console.warn(data, status);
             });
         } else {
-            $location.path('/');
+            $state.go('validator');
         }
 
 
