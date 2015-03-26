@@ -3,21 +3,31 @@
   "description": "layout concept for the contribute.json website",
   "author": "espressive <sneethling@mozilla.com>",
   "version": "0.1.0",
-  "repository" : {
-    "type" : "git",
-    "url" : "git@github.com:ossreleasefeed/contribute.git"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mozilla/contribute.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "grunt": "0.4.1",
     "grunt-cli": "0.1.9",
+    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-less": "0.8.x"
+  },
+  "devDependencies": {
     "grunt-contrib-jshint": "0.7.x",
-    "grunt-contrib-less": "0.8.x",
     "grunt-contrib-watch": "0.6.x",
     "grunt-css": "0.5.4"
   },
-  "engine": "node >= 0.10.x",
+  "engines": {
+    "node": "0.12.x"
+  },
   "volo": {
     "baseDir": ".",
-    "ignore": ["tests"]
+    "ignore": [
+      "tests"
+    ]
+  },
+  "scripts": {
+    "postinstall": "grunt prep_prod"
   }
 }
