@@ -77,9 +77,13 @@
 
     <div class="content-column">
         <h1>How do I use it?</h1>
-        <p>The basics of using contribute.json is dead simple. Write a minimal contribute.json file like so:</p>
-<pre class="line-numbers"><code class="json">{{ SAMPLE }}</code></pre>
-        <p>Now simply save this file, and place it at the root of your projects repository. It's really that simple! For a more detailed look at the full schema for contribute.json,
-            <a ui-sref="schema">head over to the schema page</a>.</p>
+        <p>Write a minimal <code>contribute.json</code> file like this:</p>
+        <pre class="line-numbers"><code class="json">{{ SAMPLE }}</code></pre>
+        <h2>Where do I put this?</h2>
+        <p>
+          A file named <code>contribute.json</code> at the root of the repository.
+          If it's a website and you want web-based tools to also find it then
+          serve it up as <code>/contribute.json</code> as well.
+        </p>
     </div>
 </section>
