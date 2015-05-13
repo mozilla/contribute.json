@@ -190,6 +190,7 @@ class ValidateUrlView(MethodView):
 app.add_url_rule('/validateurl',
                  view_func=ValidateUrlView.as_view('validateurl'))
 
+
 class ExamplesView(MethodView):
 
     def get(self):
