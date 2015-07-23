@@ -26,7 +26,7 @@ var app = angular.module('contribute.controllers', ['ngSanitize'])
     '$scope', '$state', '$http', 'resultHolder',
     function($scope, $state, $http, resultHolder) {
 
-        document.title = '/contribute.json';
+        document.title = 'contribute.json';
 
         $scope.validation = {};
         $scope.validation.url = '';
