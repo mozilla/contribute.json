@@ -9,7 +9,6 @@ from flask import (
     send_file)
 from flask.ext.cacheify import init_cacheify
 from flask.views import MethodView
-from flask_sslify import SSLify
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +36,7 @@ SAMPLE = """
 
 app = Flask(__name__)
 cache = init_cacheify(app)
-SSLify(app, permanent=True)
+app.debug = DEBUG
 
 
 def cache_set(key, value, *args, **options):

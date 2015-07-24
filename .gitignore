@@ -1,5 +1,6 @@
 *.pyc
 *.gz
+.env
 npm-debug.log
 app/static/css/contribute/contribute.css
 app/static/css/sandstone/sandstone-resp.css
