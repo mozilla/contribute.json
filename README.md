@@ -72,7 +72,7 @@ Flask app
 ---------
 
 There's a server-side app that is currently available on
-https://contribute.paas.allizom.org
+https://www.contributejson.org
 
 ## Running the Flask app locally
 
