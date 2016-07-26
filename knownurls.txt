@@ -14,3 +14,4 @@ https://mozillians.org/contribute.json
 https://badges.mozilla.org/contribute.json
 https://raw.githubusercontent.com/mozilla/configman/master/contribute.json
 https://nightly.mozilla.org/contribute.json
+https://firefox.settings.services.mozilla.com/v1/contribute.json
