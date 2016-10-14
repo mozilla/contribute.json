@@ -12,4 +12,4 @@ deploy:
   provider: heroku
   app: contribute-json
   api_key:
-    secure: AcwMG76DMPxIG8paoA+86KodHfH6hSaMJux68LU89s1c6NmumtHLiQ2Y4P9/6HCM3b4Pd4Fo+peQmTGTeiDVXA71jXLfxKamLflZKgoYaz90aVz0xwWKVY89BDfm/lKhaI+bsopiFX65gCZxFCkyfmT65At/M2Rox6Yly+iLLFo=
+    secure: VyDxcDkmp+aAU2ymjH3WpcyEyosqn3z+a01QKrGuiFKr7+KltCW3lceX1sUN7Uc9JgDMIn1KXqRtN8SG0BnXj/PUjiGa+wLymTeh5KAA2u/fYnCtkl/iDI9oHs/rKFkDwQSxChCARia/tDQQNiLqQuSkudsCzXG7XlVYsx7Grbc=
