@@ -9,8 +9,17 @@
         "list": "https://github.com/mozilla/contribute.json/issues",
         "report": "https://github.com/mozilla/contribute.json/issues"
     },
+    "participate": {
+        "docs": "https://github.com/mozilla/contribute.json/",
+        "mailing-list": "https://www.mozilla.org/about/forums/#dev-webdev",
+        "irc": "irc://irc.mozilla.org/#webdev",
+        "irc-contacts": [
+          "peterbe",
+          "pmac"
+        ]
+    },
     "urls": {
-        "prod": "https://contribute.paas.allizom.org/"
+        "prod": "https://www.contributejson.org/"
     },
     "keywords": [
         "standards",
