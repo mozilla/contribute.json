@@ -1,5 +1,5 @@
 # Enter all the URLs you know of that uses contribute.json
-https://air.mozilla.org/contribute.json
+https://symbols.mozilla.org/contribute.json
 https://raw.githubusercontent.com/mozilla/buddyup/master/contribute.json
 https://crash-stats.mozilla.com/contribute.json
 https://developer.mozilla.org/contribute.json
