@@ -10,7 +10,7 @@ cryptography==0.8.1
 enum34==1.0.4
 gunicorn==19.3.0
 itsdangerous==0.24
-jsonschema==2.3.0
+jsonschema==2.4.0
 ndg-httpsclient==0.3.3
 pyOpenSSL==0.14
 pyasn1==0.1.7

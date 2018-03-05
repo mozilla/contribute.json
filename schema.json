@@ -41,6 +41,32 @@
                 "docs"
             ]
         },
+        "translate": {
+            "type": "object",
+            "properties": {
+                "home": {
+                    "type": "string"
+                },
+                "docs": {
+                    "type": "string"
+                },
+                "mailing-list": {
+                    "type": "string"
+                },
+                "irc": {
+                    "type": "string"
+                },
+                "irc-contacts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "docs"
+            ]
+        },
         "repository": {
             "type": "object",
             "properties": {
