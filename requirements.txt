@@ -20,3 +20,5 @@ redis==2.10.6
 requests==2.19.1
 six==1.11.0
 whitenoise==4.0
+raven==6.9.0
+blinker==1.4
