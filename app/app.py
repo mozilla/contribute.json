@@ -7,7 +7,7 @@ import requests
 from flask import (
     Flask, request, jsonify, send_from_directory, render_template, abort,
     send_file)
-from flask.ext.cacheify import init_cacheify
+from flask_caching import Cache
 from flask.views import MethodView
 
 
@@ -35,7 +35,7 @@ SAMPLE = """
 """.strip()
 
 app = Flask(__name__)
-cache = init_cacheify(app)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.debug = DEBUG
 
 
