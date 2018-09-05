@@ -161,8 +161,6 @@ class ValidationView(MethodView):
         except jsonschema.SchemaError as error:
             context['schema_error'] = error.message
 
-        raise NameError('peter testing!')
-
         previous_urls = cache_get('urls_submitted', [])
         if url in previous_urls:
             previous_urls.remove(url)
