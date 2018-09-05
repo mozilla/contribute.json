@@ -9,10 +9,12 @@ from flask import (
     send_file)
 from flask_caching import Cache
 from flask.views import MethodView
+from raven.contrib.flask import Sentry
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 DEBUG = os.environ.get('DEBUG', False) in ('true', '1', 'y', 'yes')
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 SCHEMA_URL = 'https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json'
 
@@ -37,6 +39,9 @@ SAMPLE = """
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.debug = DEBUG
+
+if SENTRY_DSN:
+    Sentry(app, dsn=SENTRY_DSN)
 
 
 def cache_set(key, value, *args, **options):

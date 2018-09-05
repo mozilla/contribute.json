@@ -102,3 +102,9 @@ open http://localhost:5000/
 ```
 
 NB! Most of the functionality is built as an [AngularJS](https://angularjs.org/) app.
+
+Sentry
+------
+
+To use Sentry you just need to create an environment variable called
+`SENTRY_DSN` and it will be used.
