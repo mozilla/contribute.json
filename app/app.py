@@ -41,7 +41,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.debug = DEBUG
 
 if SENTRY_DSN:
-    sentry = Sentry(app, dsn=SENTRY_DSN)
+    Sentry(app, dsn=SENTRY_DSN)
 
 
 def cache_set(key, value, *args, **options):
@@ -160,6 +160,8 @@ class ValidationView(MethodView):
             context['validation_error'] = error.message
         except jsonschema.SchemaError as error:
             context['schema_error'] = error.message
+
+        raise NameError('peter testing!')
 
         previous_urls = cache_get('urls_submitted', [])
         if url in previous_urls:
