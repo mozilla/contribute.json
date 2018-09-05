@@ -4,7 +4,7 @@ from flask_sslify import SSLify
 from werkzeug.contrib.fixers import ProxyFix
 from whitenoise import WhiteNoise
 
-from app import app
+from app.app import app
 
 
 SSLify(app, permanent=True)
