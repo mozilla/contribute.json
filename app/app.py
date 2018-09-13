@@ -4,6 +4,7 @@ import hashlib
 
 import jsonschema
 import requests
+from requests.exceptions import ConnectionError
 from flask import (
     Flask, request, jsonify, send_from_directory, render_template, abort,
     send_file)
@@ -220,12 +221,18 @@ class LoadView(MethodView):
 
     def get(self):
         url = request.args['url']
-        cache_key = 'project_%s' % hashlib.md5(url).hexdigest()
+        cache_key = 'project_%s' % hashlib.md5(url.encode('utf-8')).hexdigest()
         project = cache_get(cache_key)
         if project is None:
-            response = requests.get(url)
+            try:
+                response = requests.get(url)
+            except ConnectionError:
+                return jsonify({'error': "ConnectionError"})
             if response.status_code == 200:
-                project = response.json()
+                try:
+                    project = response.json()
+                except json.decoder.JSONDecodeError:
+                    return jsonify({'error': "Not valid JSON"})
                 project['_url'] = url
                 project['links'] = []
                 if project.get('urls'):
