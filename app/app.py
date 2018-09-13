@@ -205,7 +205,7 @@ class ExamplesView(MethodView):
             response = requests.get(KNOWN_URLS_URL)
             assert response.status_code == 200, response.status_code
             known_urls = []
-            for line in response.content.splitlines():
+            for line in response.text.splitlines():
                 line = line.strip()
                 if line and not line.startswith('#'):
                     known_urls.append(line)
