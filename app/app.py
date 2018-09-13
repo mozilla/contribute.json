@@ -127,7 +127,7 @@ class ValidationView(MethodView):
                     '/master/contribute.json'
                 )
             try:
-                response = requests.get(url)
+                response = requests.get(url, timeout=10)
                 content = response.json()
             except (ValueError, requests.exceptions.RequestException) as exp:
                 return jsonify({'request_error': str(exp)})
