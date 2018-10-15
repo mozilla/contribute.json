@@ -140,6 +140,10 @@ class ValidationView(MethodView):
                     'response': request.data.decode('utf-8'),
                 })
             url = None
+        else:
+            return jsonify(
+                {'error': 'Neither request.data or request.url'}
+            ), 400
 
         schema_content = get_schema()
 
