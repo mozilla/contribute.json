@@ -20,5 +20,4 @@ redis==2.10.6
 requests[security]==2.20.0
 six==1.11.0
 whitenoise==4.0
-raven==6.9.0
-blinker==1.4
+raven[flask]==6.10.0
