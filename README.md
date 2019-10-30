@@ -95,7 +95,7 @@ npm install
 # generate the CSS files (use `grunt watch` to work on the LESS files)
 grunt less
 
-# Run the app with
+# You can run the app with
 DEBUG=true python app
 
 open http://localhost:5000/
