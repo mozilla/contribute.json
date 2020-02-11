@@ -34,7 +34,16 @@ as the subject. Previous discussion can be found in the comments of [the origina
             "jgmize",
             "malexis",
             "cmore"
-        ]
+        ],
+        "chat": {
+            "url": "irc://irc.mozilla.org/#www",
+            "contacts": [
+                "pmac",
+                "jgmize",
+                "malexis",
+                "cmore"
+            ]
+        }
     },
     "bugs": {
         "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
