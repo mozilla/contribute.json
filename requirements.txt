@@ -16,7 +16,7 @@ pyasn1==0.4.4
 pycparser==2.19
 pylibmc==1.5.2
 python-memcached==1.59
-redis==2.10.6
+redis==4.3.6
 requests[security]==2.20.0
 six==1.11.0
 whitenoise==4.0
