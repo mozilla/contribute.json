@@ -1,6 +1,8 @@
 contribute.json
 ===============
 
+**NOTE: This project is decommissioned and is no longer active. We will leave the repository here along with the JSON schema and the code for the website, but the website itself has been taken down and the contributejson.org domain now redirects to the repository on GitHub.**
+
 A JSON schema for open-source project contribution data.
 
 This is currently a proposal and is not yet stable. Suggestions and pull-requests welcome.
